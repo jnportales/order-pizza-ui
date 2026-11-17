@@ -1,16 +1,16 @@
 # Project Objectives Checklist
 
 ## 🏗️ Chunk 1: Project Cleanup & Authentication
-- [ ] **Project Cleanup**
-    - [ ] Remove "Hello World" boilerplate from the existing React/Webpack project.
-    - [ ] Set up basic routing (e.g., React Router) for Login, Order, and History pages.
+- [x] **Project Cleanup**
+    - [x] Remove "Hello World" boilerplate from the existing React/Webpack project.
+    - [x] Set up basic routing (e.g., React Router) for Login, Order, and History pages.
+- [ ] **Login UI**
+    - [ ] Build the Login screen (Username/Password inputs).
+    - [ ] Handle login success and redirect to the main app.
 - [ ] **API Connection Layer**
     - [ ] Configure base URL and shared headers (including "Connect" requirements).
     - [ ] Implement authentication logic (calling `/auth` with `test`/`test`).
     - [ ] Implement logic to store and retrieve the Bearer Token.
-- [ ] **Login UI**
-    - [ ] Build the Login screen (Username/Password inputs).
-    - [ ] Handle login success and redirect to the main app.
 
 ## 🍕 Chunk 2: Order Configuration & Submission
 - [ ] **Order Form UI**
