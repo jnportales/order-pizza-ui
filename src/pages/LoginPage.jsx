@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SimpleInputBox from '../components/SimpleInputBox.jsx';
+import { login } from '../api/auth';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Basic validation
     if (!username || !password) {
       setError('Please enter both username and password.');
       return;
     }
 
-    // Mock success logic
-    console.log('Logging in with:', { username, password });
-    
-    // Redirect to order page
-    navigate('/order');
+    setLoading(true);
+    try {
+      await login(username, password);
+      navigate('/order');
+    } catch (err) {
+      setError('Invalid username or password.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const styles = {
@@ -66,7 +71,7 @@ const LoginPage = () => {
       color: 'white',
       border: 'none',
       borderRadius: '4px',
-      cursor: 'pointer',
+      cursor: loading ? 'not-allowed' : 'pointer',
       fontSize: '1rem',
     },
     error: {
@@ -90,6 +95,7 @@ const LoginPage = () => {
               onChange={(e) => setUsername(e.target.value)}
               style={styles.input}
               placeholder="Enter username"
+              disabled={loading}
             />
           </div>
           <div style={styles.inputGroup}>
@@ -100,9 +106,12 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               style={styles.input}
               placeholder="Enter password"
+              disabled={loading}
             />
           </div>
-          <button type="submit" style={styles.button}>Login</button>
+          <button type="submit" style={styles.button} disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
       </div>
     </div>
