@@ -7,10 +7,10 @@
 - [x] **Login UI**
     - [x] Build the Login screen (Username/Password inputs).
     - [x] Handle login success and redirect to the main app.
-- [ ] **API Connection Layer**
-    - [ ] Configure base URL and shared headers (including "Connect" requirements).
-    - [ ] Implement authentication logic (calling `/auth` with `test`/`test`).
-    - [ ] Implement logic to store and retrieve the Bearer Token.
+- [x] **API Connection Layer**
+    - [x] Configure base URL and shared headers (including "Connect" requirements).
+    - [x] Implement authentication logic (calling `/auth` with `test`/`test`).
+    - [x] Implement logic to store and retrieve the Bearer Token.
 
 ## 🍕 Chunk 2: Order Configuration & Submission
 - [ ] **Order Form UI**
