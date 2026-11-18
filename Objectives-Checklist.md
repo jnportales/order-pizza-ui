@@ -4,9 +4,9 @@
 - [x] **Project Cleanup**
     - [x] Remove "Hello World" boilerplate from the existing React/Webpack project.
     - [x] Set up basic routing (e.g., React Router) for Login, Order, and History pages.
-- [ ] **Login UI**
-    - [ ] Build the Login screen (Username/Password inputs).
-    - [ ] Handle login success and redirect to the main app.
+- [x] **Login UI**
+    - [x] Build the Login screen (Username/Password inputs).
+    - [x] Handle login success and redirect to the main app.
 - [ ] **API Connection Layer**
     - [ ] Configure base URL and shared headers (including "Connect" requirements).
     - [ ] Implement authentication logic (calling `/auth` with `test`/`test`).
