@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-const App = () => {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-};
+import App from './App.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+  <>
+    <style>
+      {`
+        body {
+          background-color: black;
+          color: white;
+        }
+      `}
+    </style>
+    <App />
+  </>
+);
