@@ -30,8 +30,8 @@
 - [x] **Delete Functionality**
     - [x] Implement the `DELETE /orders/{Order_ID}` action.
     - [x] Ensure the UI list refreshes immediately after deletion.
-- [ ] **Search & Filtering**
-    - [ ] Implement a search bar to filter the orders (Client-side filtering).
+- [x] **Search & Filtering**
+    - [x] Implement a search bar to filter the orders (Client-side filtering).
 
 ## 🚀 Chunk 4: Deployment & Final Polish
 - [ ] **Containerization**
