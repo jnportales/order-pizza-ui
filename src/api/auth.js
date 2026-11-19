@@ -1,4 +1,5 @@
 import apiClient from './client';
+import {ACCESS_TOKEN_KEY} from './config'
 
 /**
  * SECURITY NOTE:
@@ -10,7 +11,6 @@ import apiClient from './client';
  * (such as `HttpOnly` cookies) would be required to secure the authentication token.
  */
 
-const ACCESS_TOKEN_KEY = 'access_token';
 
 export const login = async (username, password) => {
   try {

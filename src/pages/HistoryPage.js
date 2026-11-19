@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import apiClient from '../api/client';
+import {deleteOrder, fetchOrders} from '../api/orders';
 
 const HistoryPage = () => {
   const [rawOrders, setRawOrders] = useState([]);
@@ -14,11 +15,11 @@ const HistoryPage = () => {
     Table_No: '-',
   });
 
-  const fetchOrders = useCallback(async () => {
+  const loadOrders = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await apiClient.get('/orders');
-      setRawOrders(response.data);
+      const data = await fetchOrders();
+      setRawOrders(data);
     } catch (err) {
       console.error('Error fetching orders:', err);
       setError('Failed to fetch orders.');
@@ -28,8 +29,8 @@ const HistoryPage = () => {
   }, []);
 
   useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
+    loadOrders();
+  }, [loadOrders]);
 
   // 1. Calculate filtered orders based on current selections
   // This is memoized so it only re-calculates when rawOrders or filterSelections change.
@@ -79,6 +80,17 @@ const HistoryPage = () => {
       Size: '-',
       Table_No: '-',
     });
+  };
+
+  const handleDelete = async (order) => {
+    if(window.confirm(`Delete Order #${order.Order_ID}? from table #${order.Table_No}?`)) {
+      try {
+        await deleteOrder(order.Order_ID);
+        await loadOrders();
+      } catch (err) {
+        console.error('Error deleting order:', err);
+      }
+    }
   };
 
   if (loading) {
