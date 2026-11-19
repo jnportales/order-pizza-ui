@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import apiClient from '../api/client';
 import {deleteOrder, fetchOrders} from '../api/orders';
 
 const HistoryPage = () => {
