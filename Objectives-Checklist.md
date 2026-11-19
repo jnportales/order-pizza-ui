@@ -13,23 +13,23 @@
     - [x] Implement logic to store and retrieve the Bearer Token.
 
 ## 🍕 Chunk 2: Order Configuration & Submission
-- [ ] **Order Form UI**
-    - [ ] Create the UI for selecting Crust, Flavor, Size, and Table_No.
-    - [ ] Implement basic form validation (ensure all fields are populated).
-- [ ] **Submission Logic**
-    - [ ] Implement the POST request to `/orders` with the Bearer Token.
-    - [ ] Handle success/error responses from the API.
-- [ ] **User Feedback**
-    - [ ] Display a success confirmation message to the user after a successful order.
+- [x] **Order Form UI**
+    - [x] Create the UI for selecting Crust, Flavor, Size, and Table_No.
+    - [x] Implement basic form validation (ensure all fields are populated).
+- [x] **Submission Logic**
+    - [x] Implement the POST request to `/orders` with the Bearer Token.
+    - [x] Handle success/error responses from the API.
+- [x] **User Feedback**
+    - [x] Display a success confirmation message to the user after a successful order.
 
 ## 📋 Chunk 3: Order History & Management
-- [ ] **Order History Page**
-    - [ ] Create the History page UI.
-    - [ ] Implement GET request to fetch the list of orders.
-    - [ ] Display list items (ID, Crust, Flavor, Size, Table_No, Timestamp).
-- [ ] **Delete Functionality**
-    - [ ] Implement the `DELETE /orders/{Order_ID}` action.
-    - [ ] Ensure the UI list refreshes immediately after deletion.
+- [x] **Order History Page**
+    - [x] Create the History page UI.
+    - [x] Implement GET request to fetch the list of orders.
+    - [x] Display list items (ID, Crust, Flavor, Size, Table_No, Timestamp).
+- [x] **Delete Functionality**
+    - [x] Implement the `DELETE /orders/{Order_ID}` action.
+    - [x] Ensure the UI list refreshes immediately after deletion.
 - [ ] **Search & Filtering**
     - [ ] Implement a search bar to filter the orders (Client-side filtering).
 
