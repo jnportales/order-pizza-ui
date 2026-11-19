@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import apiClient from '../api/client';
+import { deleteOrder, fetchOrders } from '../api/orders';
 
 const HistoryPage = () => {
   const [rawOrders, setRawOrders] = useState([]);
@@ -14,11 +14,11 @@ const HistoryPage = () => {
     Table_No: '-',
   });
 
-  const fetchOrders = useCallback(async () => {
+  const loadOrders = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await apiClient.get('/orders');
-      setRawOrders(response.data);
+      const data = await fetchOrders();
+      setRawOrders(data);
     } catch (err) {
       console.error('Error fetching orders:', err);
       setError('Failed to fetch orders.');
@@ -28,8 +28,8 @@ const HistoryPage = () => {
   }, []);
 
   useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
+    loadOrders();
+  }, [loadOrders]);
 
   // 1. Calculate filtered orders based on current selections
   // This is memoized so it only re-calculates when rawOrders or filterSelections change.
@@ -37,8 +37,11 @@ const HistoryPage = () => {
     return rawOrders.filter(order => {
       return Object.keys(filterSelections).every(key => {
         const selectedValue = filterSelections[key];
-        if (selectedValue === '-') return true;
-        return String(order[key]) === String(selectedValue);
+        if (selectedValue === '-') {
+          return true;
+        } else {
+          return String(order[key]) === String(selectedValue);
+        }
       });
     });
   }, [rawOrders, filterSelections]);
@@ -59,7 +62,7 @@ const HistoryPage = () => {
   const handleFilterChange = (key, value) => {
     setFilterSelections(prev => {
       const next = { ...prev, [key]: value };
-      
+
       // Consistency Check: If the new selection makes a previous selection invalid, 
       // reset that invalid selection to '-'
       Object.keys(filterSelections).forEach(k => {
@@ -67,7 +70,7 @@ const HistoryPage = () => {
           next[k] = '-';
         }
       });
-      
+
       return next;
     });
   };
@@ -81,6 +84,17 @@ const HistoryPage = () => {
     });
   };
 
+  const handleDelete = async (order) => {
+    if (window.confirm(`Delete Order #${order.Order_ID}? from table #${order.Table_No}?`)) {
+      try {
+        await deleteOrder(order.Order_ID);
+        await loadOrders();
+      } catch (err) {
+        console.error('Error deleting order:', err);
+      }
+    }
+  };
+
   if (loading) {
     return <div>Loading orders...</div>;
   }
@@ -92,13 +106,13 @@ const HistoryPage = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h1 style={{ marginBottom: '10px' }}>Order History</h1>
-      
+
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
         {Object.keys(filterSelections).map(key => (
           <div key={key} style={{ display: 'flex', flexDirection: 'column' }}>
             <label style={{ fontSize: '0.8rem', marginBottom: '4px' }}>{key.replace('_', ' ')}</label>
-            <select 
-              value={filterSelections[key]} 
+            <select
+              value={filterSelections[key]}
               onChange={(e) => handleFilterChange(key, e.target.value)}
               style={{ padding: '5px', minWidth: '120px' }}
             >
