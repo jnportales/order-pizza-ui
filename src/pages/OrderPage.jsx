@@ -5,8 +5,9 @@ import apiClient from '../api/client';
 
 const OrderPage = () => {
   const access_token = getAccessToken();
-
+  console.log(`JPJPJP: ${access_token}`)
   if (!access_token) {
+    console.log(`JPJPJP: ${access_token}`)
     return <Navigate to="/login" replace />;
   }
 
