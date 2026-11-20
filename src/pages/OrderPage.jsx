@@ -5,9 +5,8 @@ import apiClient from '../api/client';
 
 const OrderPage = () => {
   const access_token = getAccessToken();
-  console.log(`JPJPJP: ${access_token}`)
+
   if (!access_token) {
-    console.log(`JPJPJP: ${access_token}`)
     return <Navigate to="/login" replace />;
   }
 
@@ -28,46 +27,46 @@ const OrderPage = () => {
     }));
   };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setMessage('');
-      setError('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setError('');
 
-      // Basic Validation
-      if (!formData.Crust || !formData.Flavor || !formData.Size || !formData.Table_No) {
-        setError('All fields are required.');
-        return;
-      }
+    // Basic Validation
+    if (!formData.Crust || !formData.Flavor || !formData.Size || !formData.Table_No) {
+      setError('All fields are required.');
+      return;
+    }
 
-      // Prepare payload with correct types
-      const payload = {
-        Crust: formData.Crust,
-        Flavor: formData.Flavor,
-        Size: formData.Size,
-        Table_No: parseInt(formData.Table_No, 10),
-      };
-
-      try {
-        const response = await apiClient.post('/orders', payload);
-        if (response.status === 200 || response.status === 201) {
-          setMessage('Order placed successfully!');
-          setFormData({
-            Crust: '',
-            Flavor: '',
-            Size: '',
-            Table_No: '',
-          });
-        }
-      } catch (err) {
-        console.error('Error submitting order:', err);
-        setError(err.response?.data?.message || 'Failed to submit order. Please try again.');
-      }
+    // Prepare payload with correct types
+    const payload = {
+      Crust: formData.Crust,
+      Flavor: formData.Flavor,
+      Size: formData.Size,
+      Table_No: parseInt(formData.Table_No, 10),
     };
+
+    try {
+      const response = await apiClient.post('/orders', payload);
+      if (response.status === 200 || response.status === 201) {
+        setMessage('Order placed successfully!');
+        setFormData({
+          Crust: '',
+          Flavor: '',
+          Size: '',
+          Table_No: '',
+        });
+      }
+    } catch (err) {
+      console.error('Error submitting order:', err);
+      setError(err.response?.data?.message || 'Failed to submit order. Please try again.');
+    }
+  };
 
   return (
     <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
       <h1>Place Your Order</h1>
-      
+
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
