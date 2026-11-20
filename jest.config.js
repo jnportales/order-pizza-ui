@@ -2,4 +2,6 @@ module.exports = {
   transform: {
     '^.+\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
+  testEnvironment: 'node',
+  setupFiles: ['<rootDir>/test/mocks.js']
 };
