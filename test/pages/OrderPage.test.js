@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import OrderPage from '../../src/pages/OrderPage.jsx';
 import { ACCESS_TOKEN_KEY } from '../../src/api/config.js'
 

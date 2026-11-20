@@ -58,19 +58,10 @@ const HistoryPage = () => {
     return options;
   }, [filteredOrders]);
 
-  // 3. Handle selection changes and maintain consistency
+  // 3. Handle selection changes
   const handleFilterChange = (key, value) => {
-    setFilterSelections(prev => {
+    setFilterSelections((prev) => {
       const next = { ...prev, [key]: value };
-
-      // Consistency Check: If the new selection makes a previous selection invalid, 
-      // reset that invalid selection to '-'
-      Object.keys(filterSelections).forEach(k => {
-        if (k !== key && filterSelections[k] !== '-' && !filterOptions[k].some(opt => String(opt) === filterSelections[k])) {
-          next[k] = '-';
-        }
-      });
-
       return next;
     });
   };
@@ -105,13 +96,14 @@ const HistoryPage = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1 style={{ marginBottom: '10px' }}>Order History</h1>
+      <h1 data-testid="history-heading" style={{ marginBottom: '10px' }}>Order History</h1>
 
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
         {Object.keys(filterSelections).map(key => (
           <div key={key} style={{ display: 'flex', flexDirection: 'column' }}>
             <label style={{ fontSize: '0.8rem', marginBottom: '4px' }}>{key.replace('_', ' ')}</label>
             <select
+              data-testid={`${key.toLowerCase()}-select`}
               value={filterSelections[key]}
               onChange={(e) => handleFilterChange(key, e.target.value)}
               style={{ padding: '5px', minWidth: '120px' }}
@@ -124,6 +116,7 @@ const HistoryPage = () => {
           </div>
         ))}
         <button
+          data-testid="clear-button"
           onClick={handleClearFilters}
           style={{
             padding: '5px 10px',
