@@ -5,7 +5,7 @@ import apiClient from '../api/client';
 
 const OrderPage = () => {
   const access_token = getAccessToken();
-
+  
   if (!access_token) {
     return <Navigate to="/login" replace />;
   }
@@ -65,7 +65,7 @@ const OrderPage = () => {
 
   return (
     <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
-      <h1>Place Your Order</h1>
+      <h1 data-testid="order-heading">Place Your Order</h1>
 
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -74,6 +74,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Crust">Crust:</label>
           <input
+            data-testid="crust-input"
             type="text"
             id="Crust"
             name="Crust"
@@ -86,6 +87,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Flavor">Flavor:</label>
           <input
+            data-testid="flavor-input"
             type="text"
             id="Flavor"
             name="Flavor"
@@ -98,6 +100,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Size">Size:</label>
           <input
+            data-testid="size-input"
             type="text"
             id="Size"
             name="Size"
@@ -110,6 +113,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Table_No">Table Number:</label>
           <input
+            data-testid="table-no-input"
             type="number"
             id="Table_No"
             name="Table_No"
@@ -119,7 +123,7 @@ const OrderPage = () => {
             placeholder="Enter table number"
           />
         </div>
-        <button type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
+        <button data-testid="submit-button" type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
           Submit Order
         </button>
       </form>
