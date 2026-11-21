@@ -84,12 +84,13 @@ const LoginPage = () => {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={{ marginBottom: '1.5rem' }}>Login</h1>
+        <h1 data-testid="login-heading" style={{ marginBottom: '1.5rem' }}>Login</h1>
         {error && <div style={styles.error}>{error}</div>}
         <form onSubmit={handleSubmit}>
           <div style={styles.inputGroup}>
             <label style={styles.label}>Username</label>
             <input
+              data-testid="username-input"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -101,6 +102,7 @@ const LoginPage = () => {
           <div style={styles.inputGroup}>
             <label style={styles.label}>Password</label>
             <input
+              data-testid="username-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -109,7 +111,11 @@ const LoginPage = () => {
               disabled={loading}
             />
           </div>
-          <button type="submit" style={styles.button} disabled={loading}>
+          <button
+            data-testid="login-button"
+            type="submit"
+            style={styles.button}
+            disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>

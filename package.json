@@ -1,22 +1,31 @@
 {
-  "name": "hello-world-app",
+  "name": "order-pizza-ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:jsdom": "jest --config=./jest.jsdom.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^8.1.2",
     "@babel/preset-env": "^8.0.7",
     "@babel/preset-react": "^8.0.1",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
+    "@types/jest": "^30.0.0",
+    "babel-jest": "^30.5.2",
     "babel-loader": "^10.1.1",
     "css-loader": "^7.1.5",
     "html-webpack-plugin": "^5.6.8",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
     "style-loader": "^4.0.0",
     "webpack": "^5.112.2",
     "webpack-cli": "^7.3.1",

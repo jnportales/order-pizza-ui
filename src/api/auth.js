@@ -1,5 +1,5 @@
 import apiClient from './client';
-import {ACCESS_TOKEN_KEY} from './config'
+import { ACCESS_TOKEN_KEY } from './config'
 
 /**
  * SECURITY NOTE:
@@ -30,6 +30,12 @@ export const login = async (username, password) => {
     throw error;
   }
 };
+
+export function setAccessToken(accessToken) {
+  if(accessToken) {
+    localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
+  }
+}
 
 export const logout = () => {
   localStorage.removeItem(ACCESS_TOKEN_KEY);

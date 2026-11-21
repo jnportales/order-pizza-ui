@@ -5,7 +5,7 @@ import apiClient from '../api/client';
 
 const OrderPage = () => {
   const access_token = getAccessToken();
-
+  
   if (!access_token) {
     return <Navigate to="/login" replace />;
   }
@@ -27,46 +27,46 @@ const OrderPage = () => {
     }));
   };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setMessage('');
-      setError('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setError('');
 
-      // Basic Validation
-      if (!formData.Crust || !formData.Flavor || !formData.Size || !formData.Table_No) {
-        setError('All fields are required.');
-        return;
-      }
+    // Basic Validation
+    if (!formData.Crust || !formData.Flavor || !formData.Size || !formData.Table_No) {
+      setError('All fields are required.');
+      return;
+    }
 
-      // Prepare payload with correct types
-      const payload = {
-        Crust: formData.Crust,
-        Flavor: formData.Flavor,
-        Size: formData.Size,
-        Table_No: parseInt(formData.Table_No, 10),
-      };
-
-      try {
-        const response = await apiClient.post('/orders', payload);
-        if (response.status === 200 || response.status === 201) {
-          setMessage('Order placed successfully!');
-          setFormData({
-            Crust: '',
-            Flavor: '',
-            Size: '',
-            Table_No: '',
-          });
-        }
-      } catch (err) {
-        console.error('Error submitting order:', err);
-        setError(err.response?.data?.message || 'Failed to submit order. Please try again.');
-      }
+    // Prepare payload with correct types
+    const payload = {
+      Crust: formData.Crust,
+      Flavor: formData.Flavor,
+      Size: formData.Size,
+      Table_No: parseInt(formData.Table_No, 10),
     };
+
+    try {
+      const response = await apiClient.post('/orders', payload);
+      if (response.status === 200 || response.status === 201) {
+        setMessage('Order placed successfully!');
+        setFormData({
+          Crust: '',
+          Flavor: '',
+          Size: '',
+          Table_No: '',
+        });
+      }
+    } catch (err) {
+      console.error('Error submitting order:', err);
+      setError(err.response?.data?.message || 'Failed to submit order. Please try again.');
+    }
+  };
 
   return (
     <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
-      <h1>Place Your Order</h1>
-      
+      <h1 data-testid="order-heading">Place Your Order</h1>
+
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -74,6 +74,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Crust">Crust:</label>
           <input
+            data-testid="crust-input"
             type="text"
             id="Crust"
             name="Crust"
@@ -86,6 +87,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Flavor">Flavor:</label>
           <input
+            data-testid="flavor-input"
             type="text"
             id="Flavor"
             name="Flavor"
@@ -98,6 +100,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Size">Size:</label>
           <input
+            data-testid="size-input"
             type="text"
             id="Size"
             name="Size"
@@ -110,6 +113,7 @@ const OrderPage = () => {
         <div>
           <label htmlFor="Table_No">Table Number:</label>
           <input
+            data-testid="table-no-input"
             type="number"
             id="Table_No"
             name="Table_No"
@@ -119,7 +123,7 @@ const OrderPage = () => {
             placeholder="Enter table number"
           />
         </div>
-        <button type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
+        <button data-testid="submit-button" type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
           Submit Order
         </button>
       </form>
