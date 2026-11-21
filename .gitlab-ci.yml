@@ -5,8 +5,7 @@ stages:
   - publish
 
 npm-install:
-  stage:
-    - setup
+  stage: setup
   script:
     - npm install
   artifacts:
