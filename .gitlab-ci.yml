@@ -1,3 +1,5 @@
 test-connection:
   script:
     - echo "GitLab CI/CD is successfully connected to GitHub!"
+  tags:
+    - jp-runner
