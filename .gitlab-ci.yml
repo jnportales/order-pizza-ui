@@ -1,16 +1,44 @@
+tags:
+  - jp-runner
 stages:
   - setup
   - test
   - build
   - publish
 
-npm-install:
+# store node_modules
+npm:install:
   stage: setup
   script:
     - npm install
   artifacts:
     paths:
-      - dist
-      - node_modules
-  tags:
-    - jp-runner
+      - ./node_modules
+    expire_in: 1 hour
+
+# run unit and component tests
+npm:test:
+  stage: test
+  script:
+    - npm test
+
+npm:test:jsdom:
+  stage: test
+  script:
+    - npm run test:jsdom
+#-----------------------------
+
+# build and store dist for downstream
+npm:build:
+  stage: build
+  script: npm run build
+  artifacts:
+    paths:
+      - ./dist
+    expire_in: 1 hour
+
+# build distributable image and publish to gitlab container registry
+docker:publish:
+  stage: publish
+  script:                    #registry.gitlab.com/group/project
+    - "docker docker build -t ${CI_TEMPLATE_REGISTRY_HOST}/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME ."
