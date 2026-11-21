@@ -1,0 +1,3 @@
+test-connection:
+  script:
+    - echo "GitLab CI/CD is successfully connected to GitHub!"
