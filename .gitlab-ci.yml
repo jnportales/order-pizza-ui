@@ -1,5 +1,17 @@
-test-connection:
+stages:
+  - setup
+  - test
+  - build
+  - publish
+
+npm-install:
+  stage:
+    - setup
   script:
-    - echo "GitLab CI/CD is successfully connected to GitHub!"
+    - npm install
+  artifacts:
+    paths:
+      - dist
+      - node_modules
   tags:
     - jp-runner
