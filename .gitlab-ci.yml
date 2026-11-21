@@ -1,5 +1,6 @@
-tags:
-  - jp-runner
+default:
+  tags:
+    - jp-runner
 stages:
   - setup
   - test
