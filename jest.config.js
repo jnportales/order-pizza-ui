@@ -4,5 +4,6 @@ module.exports = {
     '^.+\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   testEnvironment: 'node',
-  setupFiles: ['<rootDir>/test/mocks.js']
+  setupFiles: ['<rootDir>/test/mocks.js'],
+  testPathIgnorePatterns: ['<rootDir>/test/components/', '<rootDir>/test/pages/']
 };
