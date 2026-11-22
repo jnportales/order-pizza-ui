@@ -46,5 +46,5 @@ docker:publish:
   stage: publish
   script:                    #registry.gitlab.com/group/project
     - "docker build -t ${CI_TEMPLATE_REGISTRY_HOST}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA} ."
-    - "docker login ${CI_TEMPLATE_REGISTRY_HOST}"
+    - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
     - "docker push ${CI_TEMPLATE_REGISTRY_HOST}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA}"
