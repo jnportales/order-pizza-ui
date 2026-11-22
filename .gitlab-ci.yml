@@ -43,14 +43,15 @@ docker:publish:
   image: docker:cli
   variables:
     # image tage to include branch name and short commit sha
-    IMAGE_TAG: $CI_COMMIT_BRANCH-$CI_COMMIT_SHORT_SHA
+    IMAGE_TAG: CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
   rules:
     # on tag pipeline use CI tag for image tag
     - if: $CI_COMMIT_TAG
       variables:
         IMAGE_TAG: $CI_COMMIT_TAG
+    - when: always
   stage: publish
   script:                    #registry.gitlab.com/group/project
-    - "docker build -t ${CI_TEMPLATE_REGISTRY_HOST}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${IMAGE_TAG} ."
-    - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
-    - "docker push ${CI_TEMPLATE_REGISTRY_HOST}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${IMAGE_TAG}"
+    - "docker build -t ${CI_REGISTRY}/${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ."
+    - echo "${CI_JOB_TOKEN}" | docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} --password-stdin
+    - "docker push ${CI_REGISTRY}/${CI_REGISTRY_IMAGE}:${IMAGE_TAG}"
