@@ -4,3 +4,5 @@ default:
 hello-world:
   script:
    - whoami
+  tags:
+    - deploy
