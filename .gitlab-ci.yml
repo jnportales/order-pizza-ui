@@ -1,3 +1,6 @@
+default:
+  tags:
+    - jp-runner
 hello-world:
   script:
    - whoami
