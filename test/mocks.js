@@ -14,3 +14,9 @@ global.localStorage = {
         store = {};
     }
 };
+
+global.window = {
+    location: {
+        hostname: "mockhostname"
+    }
+};
