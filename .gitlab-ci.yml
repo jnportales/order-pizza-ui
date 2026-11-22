@@ -3,6 +3,11 @@ default:
     - jp-runner
 hello-world:
   script:
-   - whoami
+    - hostname
+    - whoami
+    - docker images
+    - docker rmi hello-world:latest
+    - docker pull hello-world:latest
+    - docker pull registry.gitlab.com/order-pizza-demo/order-pizza-ui:main-1d1b83a2
   tags:
     - deploy
