@@ -40,8 +40,8 @@ npm:build:
 
 # build distributable image and publish to gitlab container registry
 docker:publish:
-  variables:
-    DOCKER_HOST: unix:///var/run/docker.sock
+  # variables:
+  #   DOCKER_HOST: unix:///var/run/docker.sock
   image: docker:cli
   stage: publish
   script:                    #registry.gitlab.com/group/project
