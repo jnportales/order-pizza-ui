@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SimpleInputBox from '../components/SimpleInputBox.jsx';
 import { login } from '../api/auth';
 
 const LoginPage = () => {
