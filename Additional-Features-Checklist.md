@@ -10,3 +10,6 @@ This is a list of addtional features that come to mind when working on this proj
   - [ ] Restrict Table Number field to only allow numeric values (preventing "--", "e", and negative numbers)
 - [ ] Improve Order confirmation
   - [ ] Display confirmation message with limited details about the confirmed order on @src/pages/OrderPage.js
+- [ ] Write functional WDIO browser tests
+- [ ] install pizza-order-api as a service
+- [ ] Write B2B layer API
