@@ -1,8 +1,11 @@
-version: '3.8'
-
 services:
-  order-pizza-ui:
+  prod-order-pizza-ui:
     image: ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
     ports:
-      - "${HOST_PORT}:80"
+      - "80:80"
+    restart: unless-stopped
+  test-order-pizza-ui:
+    image: ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
+    ports:
+      - "8080:80"
     restart: unless-stopped
