@@ -6,6 +6,7 @@ stages:
   - test
   - build
   - publish
+  - deploy
 
 # store node_modules
 npm:install:
@@ -55,3 +56,21 @@ docker:publish:
     - "docker build -t ${CI_REGISTRY_IMAGE}:${IMAGE_TAG} ."
     - echo "${CI_JOB_TOKEN}" | docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} --password-stdin
     - "docker push ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}"
+
+docker:compose:
+  stage: deploy
+  tags:
+    - deploy
+  variables:
+    IMAGE_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+    CONTAINER_NAME: "test-order-pizza-ui"
+  script:
+    - docker compose -f appserver.docker-compose.yml up -d $CONTAINER_NAME
+  rules:
+    - if: $CI_COMMIT_TAG
+      variables:
+        IMAGE_TAG: $IMAGE_TAG
+        CONTAINER_NAME: prod-order-pizza-ui
+
+    - when: always
+
