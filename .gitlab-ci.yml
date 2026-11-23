@@ -69,7 +69,7 @@ docker:compose:
   rules:
     - if: $CI_COMMIT_TAG
       variables:
-        IMAGE_TAG: $IMAGE_TAG
+        IMAGE_TAG: $CI_COMMIT_TAG
         CONTAINER_NAME: prod-order-pizza-ui
 
     - when: always
