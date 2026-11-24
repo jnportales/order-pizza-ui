@@ -1,13 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { logout } from '../api/auth';
 
 const NavigationMenu = () => {
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    window.location.href = '/login';
   };
 
   const styles = {
