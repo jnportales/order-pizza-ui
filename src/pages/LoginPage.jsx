@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/auth';
+import NavigationMenu from '../components/NavigationMenu.jsx';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -35,7 +36,7 @@ const LoginPage = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh',
+      minHeight: '100vh',
       fontFamily: 'Arial, sans-serif',
       backgroundColor: 'black',
     },
@@ -81,43 +82,46 @@ const LoginPage = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h1 data-testid="login-heading" style={{ marginBottom: '1.5rem' }}>Login</h1>
-        {error && <div style={styles.error}>{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Username</label>
-            <input
-              data-testid="username-input"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              style={styles.input}
-              placeholder="Enter username"
-              disabled={loading}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Password</label>
-            <input
-              data-testid="username-password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={styles.input}
-              placeholder="Enter password"
-              disabled={loading}
-            />
-          </div>
-          <button
-            data-testid="login-button"
-            type="submit"
-            style={styles.button}
-            disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
+    <div>
+      <NavigationMenu />
+      <div style={styles.container}>
+        <div style={styles.card}>
+          <h1 data-testid="login-heading" style={{ marginBottom: '1.5rem' }}>Login</h1>
+          {error && <div style={styles.error}>{error}</div>}
+          <form onSubmit={handleSubmit}>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>Username</label>
+              <input
+                data-testid="username-input"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                style={styles.input}
+                placeholder="Enter username"
+                disabled={loading}
+              />
+            </div>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>Password</label>
+              <input
+                data-testid="username-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={styles.input}
+                placeholder="Enter password"
+                disabled={loading}
+              />
+            </div>
+            <button
+              data-testid="login-button"
+              type="submit"
+              style={styles.button}
+              disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
