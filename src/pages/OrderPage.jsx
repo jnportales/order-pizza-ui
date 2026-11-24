@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { getAccessToken } from '../api/auth';
 import apiClient from '../api/client';
+import NavigationMenu from '../components/NavigationMenu.jsx';
 
 const OrderPage = () => {
   const access_token = getAccessToken();
-  
+
   if (!access_token) {
     return <Navigate to="/login" replace />;
   }
@@ -64,69 +65,72 @@ const OrderPage = () => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
-      <h1 data-testid="order-heading">Place Your Order</h1>
+    <div>
+      <NavigationMenu />
+      <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
+        <h1 data-testid="order-heading">Place Your Order</h1>
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <div>
-          <label htmlFor="Crust">Crust:</label>
-          <input
-            data-testid="crust-input"
-            type="text"
-            id="Crust"
-            name="Crust"
-            value={formData.Crust}
-            onChange={handleChange}
-            style={{ width: '100%' }}
-            placeholder="e.g. Thin, Stuffed"
-          />
-        </div>
-        <div>
-          <label htmlFor="Flavor">Flavor:</label>
-          <input
-            data-testid="flavor-input"
-            type="text"
-            id="Flavor"
-            name="Flavor"
-            value={formData.Flavor}
-            onChange={handleChange}
-            style={{ width: '100%' }}
-            placeholder="e.g. Pepperoni, Margherita"
-          />
-        </div>
-        <div>
-          <label htmlFor="Size">Size:</label>
-          <input
-            data-testid="size-input"
-            type="text"
-            id="Size"
-            name="Size"
-            value={formData.Size}
-            onChange={handleChange}
-            style={{ width: '100%' }}
-            placeholder="e.g. Small, Medium, Large"
-          />
-        </div>
-        <div>
-          <label htmlFor="Table_No">Table Number:</label>
-          <input
-            data-testid="table-no-input"
-            type="number"
-            id="Table_No"
-            name="Table_No"
-            value={formData.Table_No}
-            onChange={handleChange}
-            style={{ width: '100%' }}
-            placeholder="Enter table number"
-          />
-        </div>
-        <button data-testid="submit-button" type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
-          Submit Order
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div>
+            <label htmlFor="Crust">Crust:</label>
+            <input
+              data-testid="crust-input"
+              type="text"
+              id="Crust"
+              name="Crust"
+              value={formData.Crust}
+              onChange={handleChange}
+              style={{ width: '100%' }}
+              placeholder="e.g. Thin, Stuffed"
+            />
+          </div>
+          <div>
+            <label htmlFor="Flavor">Flavor:</label>
+            <input
+              data-testid="flavor-input"
+              type="text"
+              id="Flavor"
+              name="Flavor"
+              value={formData.Flavor}
+              onChange={handleChange}
+              style={{ width: '100%' }}
+              placeholder="e.g. Pepperoni, Margherita"
+            />
+          </div>
+          <div>
+            <label htmlFor="Size">Size:</label>
+            <input
+              data-testid="size-input"
+              type="text"
+              id="Size"
+              name="Size"
+              value={formData.Size}
+              onChange={handleChange}
+              style={{ width: '100%' }}
+              placeholder="e.g. Small, Medium, Large"
+            />
+          </div>
+          <div>
+            <label htmlFor="Table_No">Table Number:</label>
+            <input
+              data-testid="table-no-input"
+              type="number"
+              id="Table_No"
+              name="Table_No"
+              value={formData.Table_No}
+              onChange={handleChange}
+              style={{ width: '100%' }}
+              placeholder="Enter table number"
+            />
+          </div>
+          <button data-testid="submit-button" type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
+            Submit Order
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
