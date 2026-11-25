@@ -16,5 +16,5 @@ This is a list of addtional features that come to mind when working on this proj
     - [ ] (optional) run functional tests through saucelabs
   - [x] establish personal local gitlab build and deploy runners
   - [x] configure deployment using docker-compose on appserver
-- [ ] functional testing data improvement
+- [x] functional testing data improvement
   - vendor api does not allow orders with the same exact data so functional tests fail if data is not varied
