@@ -70,7 +70,7 @@ const OrderPage = () => {
       <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
         <h1 data-testid="order-heading">Place Your Order</h1>
 
-        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {message && <p data-testid="success-message" style={{ color: 'green' }}>{message}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
