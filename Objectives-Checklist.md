@@ -34,11 +34,12 @@
     - [x] Implement a search bar to filter the orders (Client-side filtering).
 
 ## 🚀 Chunk 4: Deployment & Final Polish
-- [ ] **Containerization**
-    - [ ] Create `Dockerfile`.
-    - [ ] Create `docker-compose.yml`.
-- [ ] **Final Polish**
-    - [ ] Final UI/UX review.
-    - [ ] Verify all requirements from `Objectives.md` are met.
-- [ ] **AI Documentation**
+- [x] **Containerization**
+    - [x] Create `Dockerfile`.
+    - [x] Create `docker-compose.yml`.
+- [x] **Final Polish**
+    - [x] Final UI/UX review.
+    - [x] Verify all requirements from `Objectives.md` are met.
+- [ ] **Documentation**
+    - [ ] Update README.md with needed documentation
     - [ ] Document the use of AI tools and architectural decisions.
