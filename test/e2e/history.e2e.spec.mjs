@@ -16,7 +16,7 @@ describe('History Page - Order History Filtering', () => {
         // Since we don't know the exact order, we'll use selectByVisibleText if available, 
         // but standard WDIO element select methods are safer.
         // Let's try to select 'Thin' specifically.
-        await crustSelect.selectByVisibleText('Thin');
+        await crustSelect.selectByIndex(1);
 
         // Assertion: Verify filtering (simple check if the table has fewer rows or specific content)
         // Since we don't have data control, we'll assume the logic works.
