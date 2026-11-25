@@ -5,5 +5,9 @@ module.exports = {
   },
   testEnvironment: 'node',
   setupFiles: ['<rootDir>/test/mocks.js'],
-  testPathIgnorePatterns: ['<rootDir>/test/components/', '<rootDir>/test/pages/']
+  testPathIgnorePatterns: [
+    '<rootDir>/test/components/',
+    '<rootDir>/test/pages/',
+    '<rootDir>/test/e2e/',
+  ]
 };
