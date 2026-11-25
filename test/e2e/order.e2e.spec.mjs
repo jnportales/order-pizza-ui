@@ -1,8 +1,9 @@
 import { browser, $, expect } from '@wdio/globals';
-import { config } from '../../wdio.conf.js';
+import { getRandomOrder } from './data/pizza-order-randomizer.js';
 
 describe('Order Page - Successful Login and Order Placement', () => {
     it('should login successfully and place an order', async () => {
+
         // Step 1: Login
         await browser.url('/login');
         await $('input[data-testid="username-input"]').setValue('test');
@@ -15,12 +16,11 @@ describe('Order Page - Successful Login and Order Placement', () => {
         await expect(heading).toHaveText('Place Your Order');
 
         // Step 2: Fill Order Form
-
-        await $('input[data-testid="crust-input"]').setValue('Thin');
-        await $('input[data-testid="flavor-input"]').setValue('Pepperoni');
-        await $('input[data-testid="size-input"]').setValue('Medium');
-        const randomTableNo = Math.floor(Math.random() * 1000) + 1;
-        await $('input[data-testid="table-no-input"]').setValue(randomTableNo.toString());
+        const newOrder = getRandomOrder();
+        await $('input[data-testid="crust-input"]').setValue(newOrder.crust);
+        await $('input[data-testid="flavor-input"]').setValue(newOrder.flavor);
+        await $('input[data-testid="size-input"]').setValue(newOrder.size);
+        await $('input[data-testid="table-no-input"]').setValue(newOrder.table_no.toString());
 
         // Step 3: Submit
         await $('button[data-testid="submit-button"]').click();
