@@ -102,7 +102,7 @@ const LoginPage = () => {
       <div style={styles.container}>
         <div style={styles.card}>
           <h1 data-testid="login-heading" style={{ marginBottom: '1.5rem' }}>Login</h1>
-          {error && <div style={styles.error}>{error}</div>}
+          {error && <div data-testid="error-message" style={styles.error}>{error}</div>}
           {inform && <div style={styles.inform}>{inform}</div>}
           <form onSubmit={handleSubmit}>
             <div style={styles.inputGroup}>
