@@ -1,10 +1,9 @@
 import { browser, $, expect } from '@wdio/globals';
-import { config } from '../../wdio.conf.js';
 
 describe('History Page - Order History Filtering', () => {
     it('should filter the history table and clear filters', async () => {
         // Note: This assumes the session is already authenticated or we are on the history page
-        await browser.url(`${config.baseUrl}/history`);
+        await browser.url('/history');
 
         // Verify initial load (Optional, but good for clarity)
         // In a real scenario, we'd check if the table is not empty if there's test data

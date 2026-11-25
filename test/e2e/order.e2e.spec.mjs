@@ -4,7 +4,7 @@ import { config } from '../../wdio.conf.js';
 describe('Order Page - Successful Login and Order Placement', () => {
     it('should login successfully and place an order', async () => {
         // Step 1: Login
-        await browser.url(`${config.baseUrl}/login`);
+        await browser.url('/login');
         await $('input[data-testid="username-input"]').setValue('test');
         await $('input[data-testid="username-password"]').setValue('test');
         await $('button[data-testid="login-button"]').click();

@@ -3,7 +3,7 @@ import { config } from '../../wdio.conf.js';
 
 describe('Login Page - Failed Login', () => {
     it('should display an error message for invalid credentials', async () => {
-        await browser.url(`${config.baseUrl}/login`);
+        await browser.url('/login');
         
         await $('input[data-testid="username-input"]').setValue('wrongUser');
         await $('input[data-testid="username-password"]').setValue('wrongPass');
