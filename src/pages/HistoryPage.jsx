@@ -77,7 +77,7 @@ const HistoryPage = () => {
   };
 
   const handleDelete = async (order) => {
-    if (window.confirm(`Delete Order #${order.Order_ID}? from table #${order.Table_No}?`)) {
+    if (window.confirm(`Cancel Order ${order.Order_ID} from Table Number ${order.Table_No}?`)) {
       try {
         await deleteOrder(order.Order_ID);
         await loadOrders();
@@ -147,7 +147,7 @@ const HistoryPage = () => {
                 <th style={{ padding: '8px' }}>Size</th>
                 <th style={{ padding: '8px' }}>Table_No</th>
                 <th style={{ padding: '8px' }}>Timestamp</th>
-                <th style={{ padding: '8px' }}>Actions</th>
+                <th style={{ padding: '8px' }}>Cancel</th>
               </tr>
             </thead>
             <tbody>

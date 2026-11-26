@@ -22,9 +22,13 @@ const OrderPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    var newValue = value;
+    if(typeof value === 'string') {
+      newValue = value.toUpperCase();
+    }
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
